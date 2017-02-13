@@ -101,6 +101,7 @@ function longestWords(txt) {
     cleaned = cleanInput(txt);
     cleaned = cleaned.split(" ");
     cleaned = cleaned.sort(sortFunction);
+    cleaned = Array.from(new Set(cleaned));
     return cleaned.slice(0,10);
 }
 
@@ -138,7 +139,17 @@ function mostFrequentWords(txt) {
     }
 
     sortable.sort(function(a,b){
-        return b[1]-a[1];
+        ret = b[1]-a[1];
+        if (ret == 0) {
+            if(a < b) {
+                return -1;
+            } else if (a > b) {
+                return 1;
+            } else {
+                return 0;
+            }
+        }
+        return ret;
     })
 
     var ret = [];
@@ -154,7 +165,7 @@ function cleanInput(txt) {
     cleaned = cleaned.replace(/(\r\t|\t|\r)/gm," ");
     cleaned = cleaned.toLowerCase();
     cleaned = cleaned.replace(/ +(?= )/g,'');
-    cleaned = cleaned.trim();
-    return cleaned.replace(/[:|&;$%@"<?>()+,#.!^']/g, " ");
+    cleaned = cleaned.replace(/[:|&;$%@"<?>()+,#.!^']/g, " ");
+    return cleaned.trim();
 }
 
