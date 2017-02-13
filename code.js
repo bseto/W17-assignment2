@@ -3,14 +3,14 @@
 //
 function getStats(txt) {
     return {
-        original: txt,
-        cleaned: cleanInput(txt),
+        //original: txt,
+        //cleaned: cleanInput(txt),
         nChars: nChars(txt),
         nWords: nWords(txt),
         nLines: nLines(txt),
         nNonEmptyLines: aNonEmptyLines(txt),
-        averageWordLength: averageWordLength(txt),
         maxLineLength: maxLineLength(txt),
+        averageWordLength: averageWordLength(txt),
         palindromes: palindromes(txt),
         longestWords: longestWords(txt),
         mostFrequentWords: mostFrequentWords(txt)
@@ -52,7 +52,7 @@ function averageWordLength(txt) {
     cleaned = cleanInput(txt);
     numWords = nWords(cleaned);
     numChars = nChars(cleaned.replace(/\s/g, "").trim());
-    return cleaned.replace(/\s/g, "").trim();
+    return numChars/numWords;
     //506
 }
 
